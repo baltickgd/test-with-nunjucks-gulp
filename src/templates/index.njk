@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+<div class="main-container">
+    <div class="products-area">
+        <div class="products-container">
+            {% for data in finalObj %}
+            <div class="products-container__day">
+                <div class="product-day-information">
+                    <p class="product-day">{{ data.date }}</p>
+                    {% set docsSumm = 0 %}
+                    {% for doc in data.childrens  %}
+                        {% for product in doc.products  %}
+                            {% set docsSumm = docsSumm + product.prPrice * product.prQuantity %}
+                        {% endfor %}
+                    {% endfor %}
+                    <p class="product-count">Документов: {{ data.childrens | length }} ({{ docsSumm | round(2) }}  &#x20bd;)</p>
+                </div>
+                <div class="docs">
+                    {% for doc in data.childrens %}
+                        <div class="doc">
+                            <div class="products-list-information">
+                                <p class="products-inner__id">{{ doc.name }} №{{ doc.docId }}</p>
+                                {% set productSumm = 0 %}
+                                {% for product in doc.products  %}
+                                    {% set productSumm = productSumm + product.prPrice * product.prQuantity %}
+                                {% endfor %}
+                                <p class="product-inner__summ">{{ productSumm | round(2) }} &#x20bd;</p>
+                            </div>
+                            <div class="products-inner-list">
+                                <div class="product-list-count-summ">
+                                    <p class="product-list-count"> Товаров: {{ doc.products | length }} </p>
+                                    <p class="product-list-summ"></p>
+                                </div>
+                                <div class="product-list-all-items">
+                                    {% for product in doc.products %}
+                                        <div class="list-item-block">
+                                            <div class="list-item">
+                                                <div class="list-item-img">
+                                                    <img src="{{ product.img }}" onError="this.src='styles/images/error.jpg'; this.classList.add('error-img')">
+                                                </div>
+                                                <div class="list-item-information">
+                                                    <div class="list-item-name">
+                                                        <p>{{ product.name }}</p>
+                                                    </div>
+                                                    <div class="list-item-count-price">
+                                                        <div class="list-item-count">
+                                                            <p>{{ product.prQuantity }} штук &#215; {{ product.prPrice }} &#x20bd;</p>
+                                                        </div>
+                                                        <div class="list-item-total">
+                                                            <p>{{ product.fullPrice | round(2) }} &#x20bd;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+@mixin respond-to($media) {
+  @if $media == 375px {
+    @media screen and (min-width: 375px) { @content; }
+  }
+  @else if $media == 414px {
+    @media screen and (min-width: 414px) { @content; }
+  }
+  @else if $media == 480px {
+    @media screen and (min-width: 480px) { @content; }
+  }
+  @else if $media == 600px {
+    @media screen and (min-width: 600px) { @content; }
+  }
+  @else if $media == 768px {
+    @media screen and (min-width: 768px) { @content; }
+  }
+  @else if $media == 800px {
+    @media screen and (min-width: 800px) { @content; }
+  }
+  @else if $media == 992px {
+    @media screen and (min-width: 992px) { @content; }
+  }
+  @else if $media == 1200px {
+    @media screen and (min-width: 1200px) { @content; }
+  }
+  @else if $media == 1280px {
+    @media screen and (min-width: 1280px) { @content; }
+  }
+  @else if $media == 1286px {
+    @media screen and (min-width: 1286px) { @content; }
+  }
+  @else if $media == 1366px {
+    @media screen and (min-width: 1366px) { @content; }
+  }
+}
+
+@mixin max-width($media) {
+  @media screen and (max-width: ($media - 1px)) { @content;}
+
+}
+
+@mixin retina {
+  @media(-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi) { @content;}
+}
+
+@mixin hover {
+  &:hover, &:focus { @content; }
+}
+
+@mixin active {
+  &:active { @content; }
+}
+
+@mixin defaultBlock {
+  display: flex;
+  flex: 0 0 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
