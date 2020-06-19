@@ -6,15 +6,6 @@ document.addEventListener('DOMContentLoaded', function(){
             e.target.classList.add('open');
         }
     }
-
-    var productsContainer = document.querySelector('.products-container');
-    productsContainer.addEventListener('click', toggleProductDay);
-
-    var images = document.getElementsByTagName("img");
-
-    function failImg(img) {
-        console.log(img);
-    }
 });
 
 

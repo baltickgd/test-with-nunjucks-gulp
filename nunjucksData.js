@@ -55,14 +55,10 @@ finalObj.forEach(function (item,i) {
     })
 });
 
-function failImg(img) {
-    console.log(img);
-}
 
 module.exports = function dataFunction() {
     return {
         items,
-        finalObj,
-        failImg
+        finalObj
     }
 };
